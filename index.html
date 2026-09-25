@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zoe Scientific Limited — Lab Solutions, Training & Service</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1929; --navy2:#122840; --paper:#F5F8F9; --ink:#0B1929;
+    --teal:#00B7A8; --amber:#FFB238; --line:#28425E; --line-soft:#DCE4E8;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit;}
+  html{scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; line-height:1.55;}
+  h1,h2,h3,.wordmark{font-family:'Space Grotesk',sans-serif;}
+  a{color:inherit;}
+  img{max-width:100%;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+  :focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
+
+  /* NAV */
+  header{position:sticky; top:0; top:env(safe-area-inset-top,0px); z-index:40; background:rgba(11,25,41,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  nav.wrap{display:flex; align-items:center; justify-content:space-between; height:68px; color:var(--paper);}
+  .wordmark{font-size:1.15rem; font-weight:700; letter-spacing:.01em; display:flex; align-items:baseline; gap:.4em;}
+  .wordmark span{color:var(--teal); font-size:.65em; font-weight:500;}
+  .navlinks{display:flex; gap:28px; font-size:.95rem;}
+  .navlinks a{text-decoration:none; color:#C6D3DE; transition:color .2s;}
+  .navlinks a:hover{color:var(--paper);}
+  .navcta{background:var(--teal); color:var(--navy); padding:9px 18px; border-radius:3px; text-decoration:none; font-weight:600; font-size:.9rem;}
+  .navtoggle{display:none;}
+
+  /* HERO */
+  .hero{background:linear-gradient(180deg,var(--navy),var(--navy2)); color:var(--paper); padding:88px 0 76px; position:relative; overflow:hidden;}
+  .hero::before{content:""; position:absolute; inset:0; background-image:
+     linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+     linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+     background-size:44px 44px; pointer-events:none;}
+  .hero-grid{position:relative; display:grid; grid-template-columns:1.25fr 1fr; gap:48px; align-items:end;}
+  .eyebrow{font-size:.85rem; color:var(--teal); font-weight:600; margin:0 0 14px;}
+  h1{font-size:clamp(2.2rem,4.4vw,3.4rem); line-height:1.08; margin:0 0 22px; font-weight:600; max-width:15ch;}
+  .lede{max-width:46ch; color:#B9C8D3; font-size:1.08rem; margin:0 0 32px;}
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{display:inline-block; padding:13px 24px; border-radius:3px; text-decoration:none; font-weight:600; font-size:.95rem; transition:transform .15s, background .2s;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn-solid{background:var(--teal); color:var(--navy);}
+  .btn-solid:hover{background:#00cfbe;}
+  .btn-ghost{border:1px solid var(--line); color:var(--paper);}
+  .btn-ghost:hover{border-color:var(--teal); color:var(--teal);}
+
+  .readout{border:1px solid var(--line); background:rgba(255,255,255,.03); border-radius:4px; padding:22px; font-family:'Space Grotesk',monospace;}
+  .readout .tag{font-size:.72rem; color:#7E93A4; margin-bottom:10px;}
+  .readout-line{font-size:1.3rem; color:var(--teal); min-height:1.6em; white-space:nowrap; overflow:hidden;}
+  .readout-line .cursor{display:inline-block; width:2px; height:1em; background:var(--teal); margin-left:2px; vertical-align:-2px; animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  .readout-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
+  .readout-tags span{border:1px solid var(--line); color:#9FB3C2; font-size:.75rem; padding:4px 9px; border-radius:2px;}
+
+  /* SPEC / MISSION-VISION */
+  .spec{padding:80px 0; border-bottom:1px solid var(--line-soft);}
+  .spec-grid{display:grid; grid-template-columns:1fr 1px 1fr; gap:48px;}
+  .spec-div{background:var(--line-soft);}
+  .spec-item .label{font-size:.8rem; color:var(--teal); font-weight:600; margin-bottom:12px;}
+  .spec-item h2{font-size:1.5rem; margin:0 0 14px; font-weight:600;}
+  .spec-item p{color:#37485A; margin:0; max-width:42ch;}
+
+  /* SERVICES */
+  .services{padding:80px 0; background:#fff; border-bottom:1px solid var(--line-soft);}
+  .section-head{max-width:56ch; margin-bottom:44px;}
+  .section-head .label{font-size:.8rem; color:var(--teal); font-weight:600; margin-bottom:10px;}
+  .section-head h2{font-size:1.9rem; margin:0; font-weight:600;}
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid var(--line-soft); border-radius:4px; overflow:hidden;}
+  .card{padding:30px 26px; border-right:1px solid var(--line-soft); cursor:pointer; transition:background .2s;}
+  .card:last-child{border-right:none;}
+  .card:hover{background:#F7FBFB;}
+  .card .num{font-family:'Space Grotesk',sans-serif; color:var(--teal); font-size:.85rem; font-weight:600; margin-bottom:14px;}
+  .card h3{font-size:1.15rem; margin:0 0 10px; font-weight:600;}
+  .card p{margin:0; color:#4A5D6E; font-size:.94rem; max-height:0; overflow:hidden; opacity:0; transition:max-height .3s ease, opacity .3s ease, margin .3s ease;}
+  .card.open p{max-height:220px; opacity:1; margin-top:0;}
+  .card .hint{font-size:.8rem; color:#9FB3C2; margin-top:12px;}
+  .card.open .hint{display:none;}
+
+  /* WHO WE SERVE */
+  .serve{padding:70px 0; background:var(--paper); border-bottom:1px solid var(--line-soft);}
+  .serve-list{display:flex; flex-wrap:wrap; gap:12px; margin-top:26px;}
+  .serve-list span{border:1px solid var(--line-soft); background:#fff; padding:10px 16px; border-radius:3px; font-size:.92rem; transition:border-color .2s, color .2s;}
+  .serve-list span:hover{border-color:var(--teal); color:#007A70;}
+
+  /* CONTACT */
+  .contact{padding:84px 0; background:var(--navy); color:var(--paper);}
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
+  .contact h2{font-size:1.9rem; margin:0 0 16px; font-weight:600;}
+  .contact > .wrap > .contact-grid > div:first-child p{color:#B9C8D3; max-width:40ch;}
+  .field{border:1px solid var(--line); border-radius:4px; padding:16px 18px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; gap:12px;}
+  .field .fl{font-size:.75rem; color:#7E93A4; margin-bottom:4px;}
+  .field .fv{font-size:1rem; word-break:break-word;}
+  .copybtn{background:transparent; border:1px solid var(--line); color:#C6D3DE; padding:7px 12px; border-radius:3px; font-size:.8rem; cursor:pointer; flex:none; font-family:inherit;}
+  .copybtn:hover{border-color:var(--teal); color:var(--teal);}
+  .copybtn.done{border-color:var(--teal); color:var(--teal);}
+
+  footer{padding:28px 0; background:var(--navy); border-top:1px solid var(--line); color:#7E93A4; font-size:.85rem;}
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  @media (max-width:820px){
+    .navlinks{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .spec-grid{grid-template-columns:1fr; gap:28px;}
+    .spec-div{display:none;}
+    .cards{grid-template-columns:1fr;}
+    .card{border-right:none; border-bottom:1px solid var(--line-soft);}
+    .card:last-child{border-bottom:none;}
+    .contact-grid{grid-template-columns:1fr; gap:32px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="wordmark">Zoe Scientific <span>Limited</span></div>
+    <div class="navlinks">
+      <a href="#mission">Mission</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="navcta" href="#contact">Get in touch</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Nigeria's scientific & medical community</p>
+      <h1>Every diagnosis accurate. Every lab equipped to excel.</h1>
+      <p class="lede">We bridge the gap between global scientific innovation and local needs — delivering quality lab solutions, expert training, and responsive service.</p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="mailto:zoegrouplimited@gmail.com">Request a quote</a>
+        <a class="btn btn-ghost" href="tel:07083664539">Call 0708 366 4539</a>
+      </div>
+    </div>
+    <div class="readout">
+      <div class="tag">What we deliver</div>
+      <div class="readout-line" id="readout"><span id="readoutText"></span><span class="cursor"></span></div>
+      <div class="readout-tags">
+        <span>Lab equipment</span><span>Consumables</span><span>Training</span><span>Maintenance</span><span>Support</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="spec" id="mission">
+  <div class="wrap spec-grid">
+    <div class="spec-item">
+      <div class="label">Mission</div>
+      <h2>Bridging global innovation and local need</h2>
+      <p>We bridge the gap between global scientific innovation and local needs by delivering quality lab solutions, expert training, and responsive service to Nigeria's scientific and medical community.</p>
+    </div>
+    <div class="spec-div"></div>
+    <div class="spec-item">
+      <div class="label">Vision</div>
+      <h2>A healthier Africa, built lab by lab</h2>
+      <p>To create a healthier Africa where every diagnosis is accurate, every research insight matters, and every lab has the tools to excel.</p>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">What we do</div>
+      <h2>Three ways we support your lab</h2>
+    </div>
+    <div class="cards">
+      <div class="card" tabindex="0" role="button" aria-expanded="false">
+        <div class="num">01</div>
+        <h3>Lab solutions</h3>
+        <p>Quality laboratory equipment and consumables sourced from trusted global manufacturers, matched to the realities of labs on the ground in Nigeria.</p>
+        <div class="hint">Tap to read more</div>
+      </div>
+      <div class="card" tabindex="0" role="button" aria-expanded="false">
+        <div class="num">02</div>
+        <h3>Expert training</h3>
+        <p>Hands-on training and capacity-building for lab personnel and researchers, so every instrument we supply is used to its full potential.</p>
+        <div class="hint">Tap to read more</div>
+      </div>
+      <div class="card" tabindex="0" role="button" aria-expanded="false">
+        <div class="num">03</div>
+        <h3>Responsive service</h3>
+        <p>Local, responsive after-sales support and maintenance — because equipment is only as good as the service standing behind it.</p>
+        <div class="hint">Tap to read more</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="serve">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:0;">
+      <div class="label">Who we serve</div>
+      <h2>Hospitals, labs and research institutes across Nigeria</h2>
+    </div>
+    <div class="serve-list">
+      <span>Hospitals & clinics</span>
+      <span>Diagnostic laboratories</span>
+      <span>Research institutes</span>
+      <span>Universities</span>
+      <span>Public health agencies</span>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Talk to us</h2>
+      <p>Reach out for a quote, a training request, or service support — we respond quickly.</p>
+    </div>
+    <div>
+      <div class="field">
+        <div><div class="fl">Address</div><div class="fv">Block 5, Greenage Estate, Iyano Yesi, Ota</div></div>
+      </div>
+      <div class="field">
+        <div><div class="fl">Email</div><div class="fv">zoegrouplimited@gmail.com</div></div>
+        <button class="copybtn" data-copy="zoegrouplimited@gmail.com">Copy</button>
+      </div>
+      <div class="field">
+        <div><div class="fl">Phone</div><div class="fv">0708 366 4539</div></div>
+        <button class="copybtn" data-copy="07083664539">Copy</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Zoe Scientific Limited</span>
+    <span>Lab solutions · Training · Service — Nigeria</span>
+  </div>
+</footer>
+
+<script>
+  // Typewriter readout
+  (function(){
+    var words = ["Diagnostics.", "Research.", "Training.", "Service."];
+    var el = document.getElementById('readoutText');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ el.textContent = words.join(' '); return; }
+    var wi=0, ci=0, deleting=false;
+    function tick(){
+      var w = words[wi];
+      if(!deleting){
+        ci++;
+        el.textContent = w.slice(0,ci);
+        if(ci===w.length){ deleting=true; setTimeout(tick,1200); return; }
+      } else {
+        ci--;
+        el.textContent = w.slice(0,ci);
+        if(ci===0){ deleting=false; wi=(wi+1)%words.length; }
+      }
+      setTimeout(tick, deleting?40:70);
+    }
+    tick();
+  })();
+
+  // Expandable cards
+  document.querySelectorAll('.card').forEach(function(card){
+    function toggle(){
+      var open = card.classList.toggle('open');
+      card.setAttribute('aria-expanded', open ? 'true':'false');
+    }
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+  });
+
+  // Copy buttons
+  document.querySelectorAll('.copybtn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.getAttribute('data-copy');
+      navigator.clipboard && navigator.clipboard.writeText(text).then(function(){
+        var orig = btn.textContent;
+        btn.textContent = 'Copied';
+        btn.classList.add('done');
+        setTimeout(function(){ btn.textContent = orig; btn.classList.remove('done'); }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
